@@ -1,0 +1,184 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundo com GIFs repetidos */
+body {
+    background: url('cat.gif');
+    background-size: 150px 150px;
+    background-repeat: repeat;
+    font-family: Arial, sans-serif;
+    color: #03ff0b;
+}
+
+/* Cabeçalho fixo */
+header {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+/* Estilo dos botões */
+nav a {
+    color: #03ff0b;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #03ff0b;
+    color: #000;
+    border-radius: 5px;
+}
+
+/* Layout principal */
+.container {
+    display: flex;
+    margin-top: 60px; /* Espaço para o cabeçalho fixo */
+}
+
+/* Área do conteúdo principal com fundo desfocado */
+main {
+    width: 75%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    backdrop-filter: blur(10px); /* Desfoque */
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* Área das propagandas com fundo desfocado */
+aside {
+    width: 25%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* Efeito de luz no título */
+.luz {
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #03ff0b, 0 0 10px #03ff0b, 0 0 20px;
+    animation: luzAnimada 1.5s infinite alternate;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Animação da luz */
+@keyframes luzAnimada {
+    0% {
+        text-shadow: 0 0 5px #03ff0b, 0 0 10px #03ff0b, 0 0 20px;
+    }
+    100% {
+        text-shadow: 0 0 20px #03ff0b, 0 0 40px #03ff0b, 0 0 60px;
+    }
+}
+
+/* Estilo do input e botão */
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 18px;
+}
+
+button {
+    background: #03ff0b;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #028a06;
+}
+
+/* Estilo do QR Code */
+#qrcode {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Estilo para o rastro */
+.pointer-trail {
+    position: absolute;
+    background-color: rgba(3, 255, 11, 0.8); /* Cor do brilho */
+    border-radius: 50%;
+    width: 10px;  /* Tamanho do rastro */
+    height: 10px;
+    pointer-events: none;  /* Impede que o rastro interfira na interação com outros elementos */
+    animation: trail-animation 1s ease-out infinite;
+}
+
+/* Animação para o rastro se desfazendo suavemente */
+@keyframes trail-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Estilo para o botão */
+#eggButton {
+    font-size: 50px;  /* Tamanho grande do emoji */
+    background-color: #ffeb3b;  /* Cor de fundo amarela */
+    border: none;
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#eggButton:hover {
+    transform: scale(1.1);  /* Aumenta o tamanho ao passar o mouse */
+}
+
+
+/* Esconde a barra superior do Google Tradutor */
+#goog-gt-tt,  
+.goog-te-banner-frame,  
+.goog-te-balloon-frame {  
+    display: none !important;  
+}
+
+/* Remove margens extras que podem aparecer */
+body {  
+    top: 0px !important;  
+}
+
+.goog-te-gadget {
+    display: none !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+

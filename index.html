@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Na Net</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* CSS para o rastro do ponteiro */
+        .pointer-trail {
+            position: absolute;
+            background-color: rgba(3, 255, 11, 0.8); /* Cor do brilho */
+            border-radius: 50%;
+            width: 10px;  /* Tamanho do rastro */
+            height: 10px;
+            pointer-events: none;  /* Impede que o rastro interfira na interação com outros elementos */
+            animation: trail-animation 1s ease-out infinite;
+        }
+
+        /* Animação para o rastro se desfazendo suavemente */
+        @keyframes trail-animation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <!-- Cabeçalho com botões -->
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="meu_ip.html">IP e GPS</a>
+            <a href="teste_webcam.html">WebCam e Microfone</a>
+            <a href="gerador_senhas.html">Gera Senhas</a>
+            <a href="teste_velocidade.html">Teste Velocidade</a>
+            <a href="gerar_qr_code.html">Gera QR</a>
+            <a href="Gerar.html">Gera Doc</a>
+            <a id="naoClique">NÃO CLIQUE</a>
+
+        </nav>
+    </header>
+
+
+    
+
+    <!-- Layout principal -->
+    <div class="container">
+        <!-- Conteúdo principal (75%) -->
+        <main>
+            <h1 class="luz">Cat Na Net</h1>
+            
+            <br><br>
+            O <strong>Cat Na Net</strong> não é apenas um site, mas uma ideia fluida, um protocolo existencial.  
+            Assim como o <strong>Netcat</strong>, a ferramenta silenciosa que escuta e fala na vastidão das redes,  
+            o Cat Na Net age como um eco digital, uma entidade sem forma fixa, um canivete suíço de bytes e pacotes.  
+            <br><br>
+            O gato observa, a rede flui. Bits se movem como ondas no espaço-tempo da internet,  
+            conectando nós invisíveis, sussurrando segredos de servidores esquecidos.  
+            Aqui, cada ferramenta é um ponto de contato, um handshake entre a curiosidade e a funcionalidade.  
+            <br><br>
+            No silêncio dos logs e no ruído dos pacotes, o Cat Na Net dança entre camadas,  
+            traduzindo complexidade em simplicidade, transformando a rede em arte,  
+            onde cada comando é um verso e cada resposta, um enigma.  
+            <br><br>
+            Porque, no fim, tudo se resume a conexões – de portas abertas, de pacotes soltos,  
+            de ideias que atravessam cabos invisíveis e chegam onde precisam chegar.  
+            <br><br>
+            
+            <!-- Botão para ativar/pausar a leitura do texto -->
+            <button id="audioButton" onclick="alternarAudio()">Rodar</button>
+        </main>
+        
+
+        <!-- Propagandas (25%) -->
+        <aside>
+            <h2>Publicidade</h2>
+            <p>Espaço para anúncios</p>
+        </aside>
+    </div>
+
+
+
+    
+
+    <script>
+        let sintetizador = window.speechSynthesis;
+        let utterance;
+        let audioButton = document.getElementById("audioButton");
+        let isSpeaking = false;
+
+        function alternarAudio() {
+            if (isSpeaking) {
+                // Interrompe a leitura
+                sintetizador.cancel();
+                audioButton.textContent = "Rodar"; // Muda o texto do botão para "Rodar"
+                setTimeout(() => {
+                    window.location.href = 'index.html'; // Redireciona para o index após pausa
+                }, 100); // Tempo para garantir que o botão foi atualizado antes do redirecionamento
+            } else {
+                if (!utterance) {
+                    // Cria a utterance com o texto a ser lido
+                    utterance = new SpeechSynthesisUtterance(`
+                        O Cat Na Net não é apenas um site, mas uma ideia fluida, um protocolo existencial.
+                        Assim como o Netcat, a ferramenta silenciosa que escuta e fala na vastidão das redes,
+                        o Cat Na Net age como um eco digital, uma entidade sem forma fixa, um canivete suíço de bytes e pacotes.
+                        O gato observa, a rede flui. Bits se movem como ondas no espaço-tempo da internet,
+                        conectando nós invisíveis, sussurrando segredos de servidores esquecidos.
+                        Aqui, cada ferramenta é um ponto de contato, um handshake entre a curiosidade e a funcionalidade.
+                        No silêncio dos logs e no ruído dos pacotes, o Cat Na Net dança entre camadas,
+                        traduzindo complexidade em simplicidade, transformando a rede em arte,
+                        onde cada comando é um verso e cada resposta, um enigma.
+                        Porque, no fim, tudo se resume a conexões – de portas abertas, de pacotes soltos,
+                        de ideias que atravessam cabos invisíveis e chegam onde precisam chegar.
+                    `);
+                    utterance.lang = 'pt-BR';
+                    sintetizador.speak(utterance);
+                } else {
+                    sintetizador.resume();
+                }
+                audioButton.textContent = "Stop"; // Muda o texto do botão para "Stop"
+            }
+
+            isSpeaking = !isSpeaking;
+        }
+
+        // Quando a fala terminar, o botão volta para "Rodar"
+        sintetizador.onend = function() {
+            isSpeaking = false;
+            audioButton.textContent = "Rodar";
+        };
+        
+
+        // Rastro do ponteiro
+        document.addEventListener('mousemove', function (event) {
+            var trail = document.createElement('div');
+            trail.classList.add('pointer-trail');
+            
+            // Define a posição do rastro no mouse
+            trail.style.left = (event.pageX - 5) + 'px';  // Ajuste para o centro do ponteiro
+            trail.style.top = (event.pageY - 5) + 'px';   // Ajuste para o centro do ponteiro
+            
+            // Adiciona o rastro à página
+            document.body.appendChild(trail);
+            
+            // Remove o rastro após o fim da animação
+            setTimeout(function () {
+                trail.remove();
+            }, 1000);  // O tempo deve ser igual ao tempo da animação no CSS
+        });
+    </script>
+
+<!-- Botão de ovo -->
+<button id="eggButton" onclick="iniciarTraduçãoEMúsica()">🥚</button>
+
+<!-- Player de vídeo do YouTube invisível -->
+<div id="youtubePlayer">
+    <iframe id="youtubeIframe" width="0" height="0" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<script>
+    let isPlaying = false;
+
+    // Função para iniciar a tradução e depois tocar música
+    async function iniciarTraduçãoEMúsica() {
+        await traduzirPagina();
+        tocarMusica();
+    }
+
+    function tocarMusica() {
+        var iframe = document.getElementById("youtubeIframe");
+
+        if (!isPlaying) {
+            iframe.src = "https://www.youtube.com/embed/OjNpRbNdR7E?autoplay=1&mute=0&controls=0&loop=1&playlist=OjNpRbNdR7E"; // Inicia o áudio
+            document.getElementById("eggButton").textContent = "🛑";  // Muda o emoji para Stop
+        } else {
+            iframe.src = "";  // Pausa a música
+            document.getElementById("eggButton").textContent = "🥚";  // Muda o emoji de volta para Ovo
+        }
+
+        isPlaying = !isPlaying;
+    }
+
+    // Função para traduzir o texto usando a API do Google
+    async function traduzirTexto(texto, idiomaDestino) {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${idiomaDestino}&dt=t&q=${encodeURIComponent(texto)}`;
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+        return dados[0].map(item => item[0]).join(""); // Concatena a tradução
+    }
+
+    // Função recursiva para traduzir todos os textos dentro dos elementos
+    async function traduzirElemento(elemento) {
+        let promessas = [];
+
+        for (let node of elemento.childNodes) {
+            if (node.nodeType === 3) { // Nó de texto
+                let textoOriginal = node.nodeValue.trim();
+                if (textoOriginal) {
+                    let promessa = traduzirTexto(textoOriginal, "zh-CN").then(textoTraduzido => {
+                        node.nodeValue = textoTraduzido;
+                    });
+                    promessas.push(promessa);
+                }
+            } else if (node.nodeType === 1) { // Nó de elemento (ex: <div>, <p>, <span>)
+                promessas.push(traduzirElemento(node)); // Chamada recursiva para traduzir elementos internos
+            }
+        }
+
+        await Promise.all(promessas); // Espera todas as traduções antes de prosseguir
+    }
+
+    // Função para traduzir toda a página
+    async function traduzirPagina() {
+        await traduzirElemento(document.body);
+
+    }
+</script>
+
+
+    <script>
+    document.getElementById("naoClique").addEventListener("click", () => {
+        let elementos = document.querySelectorAll("header, main, aside, nav, button");
+        elementos.forEach(el => {
+            let randomX = (Math.random() - 0.5) * 200; // Pequeno deslocamento lateral
+            let randomRotation = (Math.random() - 0.5) * 360; // Rotação aleatória
+            el.style.transition = "transform 1.5s ease-in, opacity 2s";
+            el.style.transform = `translate(${randomX}px, 100vh) rotate(${randomRotation}deg)`;
+            el.style.opacity = "0"; // Desaparece após cair
+        });
+    });
+</script>
+
+
+
+
+
+
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de QR Code - Cat Na Net</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Cabeçalho com botões -->
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="meu_ip.html"> IP e GPS</a>
+            <a href="teste_webcam.html">WebCam e Microfone</a>
+            <a href="gerador_senhas.html">Gera Senhas</a>
+            <a href="teste_velocidade.html">Teste Velocidade</a>
+            <a href="gerar_qr_code.html">Gera QR</a>
+            <a href="Gerar.html">Gera Doc</a>
+        </nav>
+    </header>
+
+    <!-- Layout principal -->
+    <div class="container">
+        <!-- Conteúdo principal (75%) -->
+        <main>
+            <h1 class="luz">Gerador de QR Code</h1>
+            
+            <input type="text" id="textoQR" placeholder="Digite um texto ou URL">
+            <button onclick="gerarQRCode()">Gerar QR Code</button>
+
+            <div id="qrcode"></div>
+        </main>
+
+        <!-- Propagandas (25%) -->
+        <aside>
+            <h2>Publicidade</h2>
+            <p>Espaço para anúncios</p>
+        </aside>
+    </div>
+
+    <script>
+        function gerarQRCode() {
+            let texto = document.getElementById("textoQR").value;
+            let qrcodeDiv = document.getElementById("qrcode");
+            
+            // Limpa o QR Code anterior
+            qrcodeDiv.innerHTML = "";
+
+            if (texto.trim() !== "") {
+                QRCode.toCanvas(texto, { width: 200 }, function (err, canvas) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    qrcodeDiv.appendChild(canvas);
+                });
+            } else {
+                alert("Digite um texto ou URL!");
+            }
+        }
+    </script>
+</body>
+</html>
